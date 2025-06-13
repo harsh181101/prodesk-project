@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Survey Form</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+    }
+
+    .outer-container {
+      background-color: #fca641;
+      padding: 50px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .form-container {
+      background-color: #ffffff;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 350px;
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .form-container p {
+      text-align: center;
+      font-size: 13px;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-size: 14px;
+      margin-top: 10px;
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .checkbox-group,
+    .radio-group {
+      margin: 10px 0;
+    }
+
+    .checkbox-group label,
+    .radio-group label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #fca641;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ff9800;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="outer-container">
+    <form class="form-container">
+      <h2>Survey Form</h2>
+      <p>User stories survey form</p>
+
+      <label for="name">Name:</label>
+      <input type="text" id="name" placeholder="Enter Name" required>
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" placeholder="Enter E-Mail" required>
+
+      <label for="experience">Work Experience:</label>
+      <input type="number" id="experience" placeholder="Enter Number" required>
+
+      <label for="comfort">Are you comfortable in investing in real estate on platform without first investigating properly?</label>
+      <select id="comfort">
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+      </select>
+
+      <label for="suggestions">Suggestions to build trusted platform:</label>
+      <textarea id="suggestions" rows="3" placeholder="Your suggestions..."></textarea>
+
+      <label>You are ready to invest in:</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" value="Real Estate"> Real Estate</label>
+        <label><input type="checkbox" value="Mutual Funds"> Mutual Funds</label>
+        <label><input type="checkbox" value="Crypto Currency"> Crypto Currency</label>
+        <label><input type="checkbox" value="Stocks & Bonds"> Stocks & Bonds</label>
+      </div>
+
+      <label>Are you ready for further contact:</label>
+      <div class="radio-group">
+        <label><input type="radio" name="contact" value="Yes"> Yes</label>
+        <label><input type="radio" name="contact" value="No"> No</label>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+</body>
+</html>
