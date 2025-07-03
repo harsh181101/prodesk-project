@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-time Character Counter</title>
+  <style>
+    body {
+      background-color: #f78373;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: #fcd4dd;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+      width: 300px;
+    }
+    h2 {
+      font-size: 1.2em;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    textarea {
+      width: 100%;
+      height: 80px;
+      padding: 10px;
+      font-size: 1em;
+      border: 2px solid #444;
+      border-radius: 5px;
+      resize: none;
+    }
+    .counter {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9em;
+    }
+    .counter span {
+      font-weight: bold;
+    }
+    .used {
+      color: #e91e63;
+    }
+    .remaining {
+      color: #673ab7;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Real-time Character Counter</h2>
+    <textarea id="textInput" maxlength="50" placeholder="Type here..."></textarea>
+    <div class="counter">
+      <div>Total Characters: <span class="used" id="usedCount">0</span></div>
+      <div>Remaining: <span class="remaining" id="remainingCount">50</span></div>
+    </div>
+  </div>
+
+  <script>
+    const textInput = document.getElementById('textInput');
+    const usedCount = document.getElementById('usedCount');
+    const remainingCount = document.getElementById('remainingCount');
+    const maxLength = 50;
+
+    textInput.addEventListener('input', () => {
+      const currentLength = textInput.value.length;
+      usedCount.textContent = currentLength;
+      remainingCount.textContent = maxLength - currentLength;
+    });
+  </script>
+
+</body>
+</html>
