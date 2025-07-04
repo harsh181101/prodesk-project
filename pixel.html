@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Random Photos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #a33;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .gallery img {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid #fff;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: #0066cc;
+      color: #fff;
+    }
+    button:hover {
+      background-color: #005bb5;
+    }
+  </style>
+</head>
+<body>
+  <h1>Random Photos</h1>
+  <div class="gallery" id="gallery"></div>
+  <button id="loadMore">Load More</button>
+
+  <script>
+    const gallery = document.getElementById('gallery');
+    const loadMoreBtn = document.getElementById('loadMore');
+
+    // Fetch and show six random images
+    function loadImages(count = 6) {
+      for (let i = 0; i < count; i++) {
+        const img = document.createElement('img');
+        // Adding `?random=${Date.now()+i}` ensures unique images every time :contentReference[oaicite:1]{index=1}
+        img.src = `https://picsum.photos/200/150?random=${Date.now() + Math.random()}`;
+        img.alt = 'Random placeholder';
+        gallery.appendChild(img);
+      }
+    }
+
+    // Clear gallery and load new set of images on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      loadImages();
+    });
+
+    // Add more images on button click
+    loadMoreBtn.addEventListener('click', () => loadImages());
+  </script>
+</body>
+</html>
+
