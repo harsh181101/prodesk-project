@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BMI Calculator</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e0e5ec;
+      font-family: Arial, sans-serif;
+    }
+    .bmi-card {
+      background: #e0e5ec;
+      width: 320px;
+      padding: 30px 20px;
+      border-radius: 16px;
+      box-shadow: 8px 8px 16px #babecc,
+                  -8px -8px 16px #ffffff;
+    }
+    .bmi-card h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+    .bmi-card label {
+      display: block;
+      margin: 10px 0 4px;
+      font-size: 14px;
+    }
+    .bmi-card input[type="number"],
+    .bmi-card input#result {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: #e0e5ec;
+      box-shadow: inset 4px 4px 8px #babecc,
+                  inset -4px -4px 8px #ffffff;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    .bmi-card input#result {
+      pointer-events: none;
+    }
+    .bmi-card button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: #e0e5ec;
+      box-shadow: 4px 4px 8px #babecc,
+                  -4px -4px 8px #ffffff;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+    }
+    .bmi-card button:active {
+      box-shadow: inset 3px 3px 6px #babecc,
+                  inset -3px -3px 6px #ffffff;
+    }
+    .bmi-card #condition {
+      text-align: center;
+      margin-top: 14px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bmi-card">
+    <h2>Body Mass Index (BMI) Calculator</h2>
+    <label for="height">Your Height (cm):</label>
+    <input type="number" id="height" placeholder="e.g. 180">
+    <label for="weight">Your Weight (kg):</label>
+    <input type="number" id="weight" placeholder="e.g. 80">
+    <button id="computeBtn">Compute BMI</button>
+    <input type="text" id="result" readonly placeholder="Your BMI will appear here">
+    <div id="condition"></div>
+  </div>
+
+  <script>
+    document.getElementById('computeBtn').addEventListener('click', () => {
+      const h = parseFloat(document.getElementById('height').value);
+      const w = parseFloat(document.getElementById('weight').value);
+      const res = document.getElementById('result');
+      const cond = document.getElementById('condition');
+
+      if (!h || h <= 0 || !w || w <= 0) {
+        res.value = '';
+        cond.textContent = 'Please enter valid height and weight.';
+        return;
+      }
+
+      const heightM = h / 100;
+      const bmi = w / (heightM * heightM);
+      res.value = bmi;
+
+      let status = '';
+      if (bmi < 18.5) status = 'Underweight';
+      else if (bmi < 25) status = 'Normal weight';
+      else if (bmi < 30) status = 'Overweight';
+      else status = 'Obesity';
+
+      cond.textContent = `Weight Condition: ${status}`;
+    });
+  </script>
+
+</body>
+</html>
