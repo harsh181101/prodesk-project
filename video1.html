@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Background Video Example</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; font-family: Arial, sans-serif; }
+
+    /* Preloader styling */
+    #preloader {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid #444;
+      border-top: 6px solid #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Video container */
+    .video-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .video-container video {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+    }
+
+    /* Overlay (title + button) */
+    .overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(0,0,0,0.7);
+      z-index: 10;
+    }
+    .overlay h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    #toggle-btn {
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    #toggle-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Video with overlay -->
+  <div class="video-container">
+    <video id="bg-video" autoplay muted loop playsinline>
+      <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+      <!-- Fallback formats here -->
+    </video>
+    <div class="overlay">
+      <h1>Sahand Ghavidel</h1>
+      <button id="toggle-btn"><i class="fa-solid fa-pause"></i></button>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById('bg-video');
+    const btn = document.getElementById('toggle-btn');
+    const pre = document.getElementById('preloader');
+
+    // Hide preloader when video is ready
+    video.addEventListener('canplaythrough', () => {
+      pre.style.display = 'none';
+    });
+
+    // Toggle video playback
+    btn.addEventListener('click', () => {
+      if (video.paused) {
+        video.play();
+        btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+      } else {
+        video.pause();
+        btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+      }
+    });
+  </script>
+
+</body>
+</html>
